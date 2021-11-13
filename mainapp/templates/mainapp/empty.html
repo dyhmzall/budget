@@ -1,0 +1,54 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {{ title|capfirst }}
+        {% endblock title %}
+    </title>
+
+    <style>
+        .active {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <form action="" onsubmit="addNewProduct">
+        <div>
+            <label for="name">Продукт</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <br>
+        <div>
+            <label for="price">Цена</label>
+            <input type="text" name="price" id="price">
+        </div>
+        <br>
+        <div>
+            {% for category in categories %}
+            <button type="button" onclick="chooseCategory(this)" data-id="{{ category.id }}">{{ category.name }}</button>
+            {% endfor %}
+        </div>
+        <br>
+        <div>
+            <input type="button" value="ok" onclick="addNewProduct()">
+        </div>
+    </form>
+</div>
+
+<script>
+    var categoryId = 0;
+</script>
+<script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>
