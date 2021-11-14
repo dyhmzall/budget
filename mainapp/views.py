@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.http import JsonResponse
 
-from .models import Product, Category
+from .models import Product, Category, Budget
 
 
 def main(request):
@@ -25,7 +25,8 @@ def bay(request):
     data = {
         'name': name,
         'price': price,
-        'category_id': category_id
+        'category_id': category_id,
+        'message': 'успешно добавлено!'
     }
 
     current_category = Category.objects.get(id=category_id)
@@ -37,3 +38,25 @@ def bay(request):
     product.save()
 
     return JsonResponse(data)
+
+
+def budget(request):
+    months = Budget.objects.all().values('month').distinct()
+
+    content = {
+        'months': months
+    }
+
+    return render(request, "mainapp/budget.html", content)
+
+
+def month(request, month=None):
+
+    budget = Budget.objects.filter(month=month)
+
+    content = {
+        'budget': budget,
+        'sum': sum(list(map(lambda x: x.amount, budget)))
+    }
+
+    return render(request, "mainapp/month.html", content)

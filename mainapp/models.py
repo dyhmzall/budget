@@ -24,4 +24,4 @@ class Budget(models.Model):
     amount = models.DecimalField(verbose_name="сумма", max_digits=8, decimal_places=2, default=0)
 
     def __str__(self):
-        return self.month
+        return f"[{self.category.name}] ({self.month}) {self.amount}"

@@ -10,6 +10,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", mainapp.main, name="main"),
     path("bay/", mainapp.bay, name="bay"),
+    path("budget/<str:month>", mainapp.month, name="month"),
+    path("budget/", mainapp.budget, name="budget"),
 ]
 
 if settings.DEBUG:
