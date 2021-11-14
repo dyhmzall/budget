@@ -13,6 +13,7 @@ class Product(models.Model):
     name = models.CharField(verbose_name="имя", max_length=128)
     price = models.DecimalField(verbose_name="цена", max_digits=8, decimal_places=2, default=0)
     description = models.TextField(verbose_name="описание продукта", blank=True)
+    month = models.CharField(verbose_name="месяц", max_length=128)
 
     def __str__(self):
         return self.name

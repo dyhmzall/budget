@@ -39,6 +39,11 @@ function addNewProduct() {
             $('#result').html(response.message).show();
             $("#name").val('');
             $("#price").val('');
+            categoryId = 0;
+
+            [].forEach.call(document.querySelectorAll(".active"), function(el) {
+                el.classList.remove("active");
+            });
         }
     });
 }

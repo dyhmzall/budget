@@ -16,7 +16,8 @@
 <div class="container">
     <div class="row">
         <div class="col">
-
+            <a href="/">траты</a><br>
+            <a href="/budget/">бюджет</a>
         </div>
         <div class="col">
             <table class="table table-bordered">
@@ -31,18 +32,39 @@
                 <tbody>
                 {% for budget_item in budget %}
                 <tr>
-                    <td scope="row">{{ budget_item.category.name }}</td>
-                    <td scope="row">{{ budget_item.amount }}</td>
-                    <td></td>
-                    <td></td>
+                    <td scope="row">{{ budget_item.name }}</td>
+                    <td scope="row">{{ budget_item.amount|floatformat:"0" }}</td>
+                    <td scope="row">{{ budget_item.spend|floatformat:"0" }}</td>
+                    <td scope="row">{{ budget_item.total|floatformat:"0" }}</td>
                 </tr>
                 {% endfor %}
                 <tr>
                     <td></td>
-                    <td>{{ sum }}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ amount|floatformat:"0" }}</td>
+                    <td>{{ spend|floatformat:"0" }}</td>
+                    <td>{{ total|floatformat:"0" }}</td>
                 </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">название</th>
+                    <th scope="col">цена</th>
+                    <th scope="col">категория</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                <tr>
+                    <td scope="row">{{ product.name }}</td>
+                    <td scope="row">{{ product.price|floatformat:"0" }}</td>
+                    <td scope="row">{{ product.category.name }}</td>
+                </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
