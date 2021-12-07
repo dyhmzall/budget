@@ -55,6 +55,7 @@
                     <th scope="col">название</th>
                     <th scope="col">цена</th>
                     <th scope="col">категория</th>
+                    <th scope="col">дата</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,6 +64,7 @@
                     <td scope="row">{{ product.name }}</td>
                     <td scope="row">{{ product.price|floatformat:"0" }}</td>
                     <td scope="row">{{ product.category.name }}</td>
+                    <td scope="row">{{ product.date|date:"d.m" }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>

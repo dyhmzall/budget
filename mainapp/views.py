@@ -55,7 +55,7 @@ def budget(request):
 def month(request, month=None):
     budget = Budget.objects.filter(month=month)
 
-    products = Product.objects.filter(month=month)
+    products = Product.objects.filter(month=month).order_by('-id')
 
     expenses = {}
 
