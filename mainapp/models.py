@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 
 class Category(models.Model):
@@ -14,7 +15,7 @@ class Product(models.Model):
     price = models.DecimalField(verbose_name="цена", max_digits=8, decimal_places=2, default=0)
     description = models.TextField(verbose_name="описание продукта", blank=True)
     month = models.CharField(verbose_name="месяц", max_length=128)
-    date = models.DateField(verbose_name="дата", auto_now=True)
+    date = models.DateField(verbose_name="дата", default=datetime.now)
 
     def __str__(self):
         return self.name
